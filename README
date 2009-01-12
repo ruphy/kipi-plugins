@@ -1,0 +1,130 @@
+KIPIPLUGINS PROJECT (http://www.kipi-plugins.org)
+
+-- AUTHORS ------------------------------------------------------------
+
+See AUTHORS file for details.
+
+-- ABOUT --------------------------------------------------------------
+
+Libkipi and kipi-plugins allows image applications as digiKam (http://www.digikam.org)
+to use a plugin architecture for additional functionalities.
+
+Notes:
+
+Most of the Kipi-plugins have previously been DigikamPlugins.
+kipi-plugins is based in part on the work of the Independent JPEG Group.
+
+Current plugins ported to Qt4/KDE4:
+
+AcquireImages      : A tool to acquire images using flat scanner.
+Calendar           : A tool to create calendars.
+DngConverter       : A tool to convert Raw Image to Digital NeGative (DNG - http://en.wikipedia.org/wiki/Digital_Negative_(file_format)).
+FlickrExport       : A tool to export images to a remote Flickr web service (http://www.flickr.com).
+GalleryExport      : A tool to export images to a remote Gallery (and Gallery 2) server (http://gallery.sf.net).
+GPSSync            : A tool to geolocalize pictures.
+HTMLExport         : A tool to export images collections into a static XHTML page.
+ImageViewer        : A tool to preview images using OpenGL.
+JpegLossLess       : A tool to rotate/flip images without losing quality.
+MetadataEdit       : A tool to edit EXIF, IPTC and XMP metadata.
+PicasaWebExport    : A tool to export images to a remote Picasa web service (http://www.picasaweb.com).
+RawConverter       : A tool to convert Raw Image to JPEG/PNG/TIFF.
+RemoveRedEyes      : A tool to remove red eyes on image automatically.
+SendImages         : A tool to send images by e-mail.
+SimpleViewerExport : A tool to export images to Flash using SimpleViewer (http://www.airtightinteractive.com/simpleviewer).
+SlideShow          : A tool to Slide images with 2D and 3D effects using OpenGL.
+SmugExport         : A tool to export images to a remote SmugMug web service (http://www.smugmug.com).
+FbExport           : A tool to export images to a remote Facebook web service (http://www.facebook.com).
+TimeAdjust         : A tool to adjust date and time.
+PrintWizard        : A tool to print images in various format.
+
+Porting under progress to Qt4/KDE4:
+
+IpodExport         : A tool to export pictures to an Ipod device.
+WallPaper          : A tool to set image as background on your desktop.
+
+Not yet ported to Qt4/KDE4:
+
+BatchProcess       : A collection of tools to batch process images (convert, resize, rename, etc.)
+CDArchiving        : A tool to archive your image collections to a CD or DVD.
+MpegEncoder        : A tool to create an MPEG slideshow with a set of images.
+
+-- DEPENDENCIES -------------------------------------------------------
+
+CMake           >= 2.4.5                        http://www.cmake.org
+libqt           >= 4.3.x                        http://www.trolltech.com
+libkde          >= 4.0.x                        http://www.kde.org
+libtiff         >= 3.6.x (>=3.8.2 recommended)  http://www.remotesensing.org/libtiff
+libjpeg         >= 6b                           http://www.ijg.org
+libpng          >= 1.2.x                        http://www.libpng.org/pub/png/libpng.html
+libkipi         >= 0.2.0                        http://www.digikam.org/sharedlibs
+libkexiv2       >= 0.5.0                        http://www.digikam.org/sharedlibs
+libkdcraw       >= 0.4.0                        http://www.digikam.org/sharedlibs          Using LibRaw decoder instead dcraw.
+ImageMagick     >= 5.5.4 (runtime dependency)   http://www.imagemagick.org
+
+Optional:
+
+libxslt         >= 1.1                          http://xmlsoft.org/XSLT
+libxml2         >= 2.7.x                        http://xmlsoft.org
+libX11          >= 1.1.5                        http://www.x11.org                         Linux Only.
+libexpat        >= 2.0.1                        http://expat.sourceforge.net
+libqtopengl     >= 4.3.x                        http://www.trolltech.com
+Mesa3D          >= 7.0.4                        http://mesa3d.sourceforge.net
+libopencv       >= 1.0                          http://opencv.willowgarage.com
+libgpod         >= 0.6.0                        http://www.gtkpod.org/libgpod.html
+
+Plugin Specific Dependencies (for compiling and for running) :
+
+SlideShow          : X11 (Linux Only), Mesa3D, and OpenGL support for libqt
+ImageViewer        : X11 (Linux Only), Mesa3D, and OpenGL support for libqt
+DngConverter       : libexpat and libkdcraw 0.4.0
+AcquireImages      : libksane
+HtmlZxport         : libxslt and libxml2
+JpegLossless       : imagemagick (runtime dependency)
+WallPaper          : kdebase (runtime dependency)
+RemoveRedEyes      : libopencv.
+IpodExport         : libgpod.
+Calendar           : libkcal (kdepimlibs)
+
+
+-- CONTACT ------------------------------------------------------------
+
+If you have questions, comments, suggestions to make do email at :
+
+kde-imaging@kde.org
+
+IRC channel from irc.freenode.org server: #kde-imaging
+                                          #digikam
+
+IMPORTANT : the bugreports and wishlist are hosted by the KDE bugs report 
+system who can be contacted by the standard Kde help menu of plugins dialog. 
+A mail will be automaticly sent to the Kipi mailing list.
+There is no need to contact directly the Kipi mailing list for a bug report 
+or a devel wish.
+
+The current Kipi bugs and devel wish reported to the Kde bugs report can be see 
+at this url :
+
+http://bugs.kde.org/buglist.cgi?product=kipiplugins&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED
+
+-- INSTALL ------------------------------------------------------------
+
+In order to compile, especially when QT3/Qt4 are installed at the same time, 
+just use something like that:
+
+# export VERBOSE=1
+# export QTDIR=/usr/lib/qt4/  
+# export PATH=$QTDIR/bin:$PATH 
+# cmake .
+# make
+
+Usual CMake options :
+
+-DCMAKE_INSTALL_PREFIX : decide where the program will be install on your computer.
+-DCMAKE_BUILD_TYPE     : decide which type of build you want. You can chose between "debugfull", "debug", "profile", "relwithdebinfo" and "release". The default is "relwithdebinfo" (-O2 -g).
+
+Compared to old KDE3 autoconf options:
+
+"cmake . -DCMAKE_BUILD_TYPE=debugfull" is equivalent to "./configure --enable-debug=full"
+"cmake . -DCMAKE_INSTALL_PREFIX=/usr"  is equivalent to "./configure --prefix=/usr"
+
+More details can be found ata this url: http://techbase.kde.org/Development/Tutorials/CMake#Environment_Variables
